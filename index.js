@@ -25,8 +25,8 @@ config.prod = {
 }
 
 const nodeEnv = process.env.NODE_ENV;
-const env = nodeEnv ? nodeEnv : 'dev';
-const options = config[env] ? config[env] : config.dev;
+const env = nodeEnv ? nodeEnv : 'dev'; //parodo tai ka mes nurodem terminale
+const options = config[env] ? config[env] : config.dev;  //cia jei turi ta ka nurodem terminele tai duoda mum ta config, jei neturim tai duoda defoult configa, musu atveju tai config.dev
 
 console.log('kur dirba kodas?');
 console.log(nodeEnv);
