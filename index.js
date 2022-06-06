@@ -1,33 +1,23 @@
-const config = {};
+import { server } from './lib/server.js';
 
-config.dev = {
-    name: 'dev',
-    passwordLength: 2,
-    defaultLanguage: 'en',
-    languages: ['en', 'lt', 'ee'],
-    db: {
-        user: 'root',
-        password: 'admin',
-        database: 'batai',
-    },
+const app = {};
+
+app.init = () => {
+    // susikurti busimus reikiamus folder'ius
+    // susikurti busimus reikiamus failus, pvz.: robots.txt
+
+    // prisijungti prie duomenu bazes (DB)
+
+    // paleidziam pacio serverio logika (perduodame prisijungima prie DB)
+    server.init();
+
+    // paleidzia papildomus nuolatinius procesus:
+    // - issitrinti nebereikalingus failus
+    // - suarchivuoti retai naudojamus failus
+    // - prasukti reikiamus API (3rd-party info, pvz.: valiutu kursai, orai)
+    // - pasitikrinti, jog vartotojai, kurie neturi teises buti prisijunge, jog ir nera prisijunge, o jei yra - atjungiame!!!
 }
 
-config.prod = {
-    name: 'prod',
-    passwordLength: 12,
-    defaultLanguage: 'lt',
-    languages: ['en', 'lt'],
-    db: {
-        user: 'node_batai_user',
-        password: 'r84tr5s25e84rrg52f5er84r5ert8r4g55e',
-        database: 'batai-r5fe1d15',
-    },
-}
+app.init();
 
-const nodeEnv = process.env.NODE_ENV;
-const env = nodeEnv ? nodeEnv : 'dev'; //parodo tai ka mes nurodem terminale
-const options = config[env] ? config[env] : config.dev;  //cia jei turi ta ka nurodem terminale tai duoda mum ta config, jei neturim tai duoda defoult configa, musu atveju tai config.dev
-
-console.log('kur dirba kodas?');
-console.log(nodeEnv);
-console.log(options);
+export default app;
